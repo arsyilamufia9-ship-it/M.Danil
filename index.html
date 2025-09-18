@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>M.DNL — Studio Desain & Web</title>
+  <meta name="description" content="M.DNL — Desain, Web, Branding. Studio kreatif yang membantu brand tampil profesional." />
+  <meta name="theme-color" content="#0ea5a4" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon (simple SVG data URL) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%238b5cf6'/%3E%3Ctext x='50' y='58' font-size='42' font-family='Inter, sans-serif' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E">
+
+  <style>
+    :root{
+      --bg: #071021;
+      --panel: rgba(255,255,255,0.03);
+      --muted: #94a3b8;
+      --accent1: #06b6d4;
+      --accent2: #8b5cf6;
+      --glass: rgba(255,255,255,0.04);
+      --card-radius:14px;
+      --max-width:1120px;
+      --text: #e6eef8;
+      --success: #10b981;
+      --danger: #ef4444;
+    }
+
+    /* Dark/Light theme toggling uses [data-theme="light"] on html */
+    html[data-theme="light"]{
+      --bg: #f7fafc;
+      --panel: rgba(2,6,23,0.03);
+      --muted: #475569;
+      --text: #0b1220;
+      --glass: rgba(11,18,32,0.03);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: linear-gradient(180deg,var(--bg), #051323 80%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:28px 16px;
+    }
+
+    .container{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:0 18px;
+    }
+
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:22px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      text-decoration:none;
+      color:inherit;
+    }
+    .logo{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      font-size:18px;
+      color:white;
+      box-shadow: 0 8px 26px rgba(11,12,20,0.45);
+    }
+    .brand h1{font-size:18px;margin:0}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:10px;
+      font-weight:600;
+      font-size:14px;
+    }
+    nav a:hover{color:var(--text); background:var(--glass)}
+    .btn{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg,var(--accent2),var(--accent1));
+      color:white;
+      box-shadow: 0 10px 30px rgba(139,92,246,0.08);
+    }
+    .btn-ghost{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.04);
+      color:var(--muted);
+    }
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 440px;
+      gap:20px;
+      align-items:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      padding:28px;
+      border-radius:var(--card-radius);
+      box-shadow: 0 16px 40px rgba(2,6,23,0.6);
+      overflow:hidden;
+    }
+    .kicker{
+      display:inline-block;
+      padding:6px 10px;
+      background:rgba(255,255,255,0.03);
+      color:var(--accent1);
+      border-radius:999px;
+      font-weight:700;
+      font-size:13px;
+    }
+    .hero h2{font-size:32px;margin:8px 0 6px 0;line-height:1.04}
+    .hero p{color:var(--muted);margin:0 0 12px 0}
+    .meta{
+      display:flex;
+      gap:10px;
+      color:var(--muted);
+      font-size:13px;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+
+    /* hero right card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      padding:16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .stat-row{display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .stat{flex:1;text-align:center;padding:12px}
+    .stat h3{margin:0;font-size:20px}
+    .stat p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
+
+    /* sections */
+    .section{margin-top:26px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .feature{
+      padding:18px;border-radius:12px;background:var(--panel);border:1px solid rgba(255,255,255,0.03)
+    }
+    .feature h3{margin:0 0 8px 0}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+
+    /* portfolio */
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .project{
+      position:relative;
+      overflow:hidden;
+      border-radius:10px;
+      height:160px;
+      display:block;
+      text-decoration:none;
+      color:white;
+      background-size:cover;
+      background-position:center;
+      border:1px solid rgba(255,255,255,0.03);
+      transition:transform .25s ease;
+    }
+    .project:hover{transform:translateY(-8px)}
+    .project .overlay{
+      position:absolute;inset:0;padding:12px;display:flex;flex-direction:column;justify-content:flex-end;
+      background:linear-gradient(180deg,transparent, rgba(0,0,0,0.28));
+      backdrop-filter: blur(2px);
+    }
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(0,0,0,0.3);display:inline-block}
+
+    /* testimonials carousel simple */
+    .testimonials{display:flex;gap:12px;align-items:center}
+    .test-card{
+      min-width:320px;max-width:520px;padding:16px;border-radius:12px;background:var(--panel);border:1px solid rgba(255,255,255,0.03)
+    }
+    .test-quote{font-size:15px;color:var(--muted);margin:8px 0}
+    .controls{display:flex;gap:8px;align-items:center}
+
+    /* blog list */
+    .post{display:flex;gap:12px;align-items:center;padding:12px;border-radius:10px;background:var(--panel);border:1px solid rgba(255,255,255,0.03)}
+    .post img{width:96px;height:64px;object-fit:cover;border-radius:8px}
+
+    /* contact & map */
+    .contact-wrap{display:grid;grid-template-columns:1fr 380px;gap:16px}
+    label{display:block;font-size:13px;margin-bottom:6px;color:var(--muted)}
+    input[type="text"], input[type="email"], textarea{
+      width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);color:inherit;font-size:14px
+    }
+    textarea{min-height:120px;resize:vertical}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* footer */
+    footer{margin-top:26px;padding:20px;border-radius:10px;text-align:center;color:var(--muted)}
+
+    /* animations */
+    .fadeIn{opacity:0;transform:translateY(6px);animation:fadeIn .7s ease forwards}
+    .fadeIn.delay-1{animation-delay:.12s}
+    .fadeIn.delay-2{animation-delay:.24s}
+    @keyframes fadeIn{to{opacity:1;transform:none}}
+
+    /* responsive */
+    @media (max-width:1100px){
+      .hero{grid-template-columns:1fr; padding:20px}
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+      .contact-wrap{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      header{flex-direction:column;align-items:flex-start;gap:12px}
+      nav{width:100%;justify-content:flex-start}
+      .portfolio-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .hero h2{font-size:22px}
+      .stat-row{flex-direction:column;gap:8px}
+      .logo{width:48px;height:48px}
+    }
+
+    /* accessibility focus ring */
+    a:focus, button:focus, input:focus, textarea:focus{outline:3px solid rgba(99,102,241,0.14); outline-offset:3px}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .center{display:flex;justify-content:center;align-items:center}
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="fadeIn">
+      <a class="brand" href="#top" aria-label="M.DNL - home">
+        <div class="logo" aria-hidden="true">M.D</div>
+        <div>
+          <h1>M.DNL</h1>
+          <p>Desain • Web • Branding</p>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <a href="#services">Layanan</a>
+        <a href="#work">Portfolio</a>
+        <a href="#testimonials">Testimoni</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Kontak</a>
+        <a class="btn btn-primary" href="#contact">Dapatkan Penawaran</a>
+        <button id="themeToggle" aria-pressed="false" title="Toggle theme" style="margin-left:8px;padding:8px 10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);font-weight:700">🌗</button>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero fadeIn delay-1" id="top" aria-labelledby="hero-title">
+      <div>
+        <span class="kicker">Studio Kreatif</span>
+        <h2 id="hero-title">M.DNL — Mewujudkan Ide Menjadi Produk Digital yang Memikat</h2>
+        <p>Kami membantu brand & usaha kecil tampil profesional melalui desain visual, website cepat, dan strategi brand yang jelas.</p>
+
+        <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="#contact">Mulai Proyek</a>
+          <a class="btn btn-ghost" href="#work">Lihat Portfolio</a>
+        </div>
+
+        <div class="meta">
+          <div>⚡ Fast turnaround</div>
+          <div>•</div>
+          <div>💼 Portofolio hand-picked</div>
+          <div>•</div>
+          <div>✅ Harga kompetitif</div>
+        </div>
+      </div>
+
+      <aside class="card" aria-hidden="true">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <strong>Statistik Singkat</strong>
+          <span class="small">Update 2025</span>
+        </div>
+        <div class="stat-row" style="margin-top:8px">
+          <div class="stat">
+            <h3>120+</h3>
+            <p>Project selesai</p>
+          </div>
+          <div class="stat">
+            <h3>85%</h3>
+            <p>Kenaikan konversi rata-rata</p>
+          </div>
+          <div class="stat">
+            <h3>30+</h3>
+            <p>Klien puas</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT / MISSION -->
+    <section class="section fadeIn delay-2" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">Tentang M.DNL</h2>
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:16px;margin-top:12px">
+        <div class="card">
+          <p style="margin-top:0" class="muted">M.DNL berdiri untuk membantu UMKM dan brand baru mengkomunikasikan nilai mereka secara visual serta menghadirkan website yang mudah digunakan dan dioptimalkan untuk konversi.</p>
+          <h3 style="margin-top:12px">Misi Kami</h3>
+          <ul style="margin-top:8px;color:var(--muted);font-size:14px">
+            <li>Mendesain identitas yang mudah diingat.</li>
+            <li>Membangun website cepat & responsif.</li>
+            <li>Mengoptimalkan pengalaman pengguna untuk hasil nyata.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Keunggulan Kami</h3>
+          <ul style="margin-top:8px;color:var(--muted);font-size:14px">
+            <li>Tim kecil, proses cepat, harga kompetitif.</li>
+            <li>Desain yang berfokus pada brand & konversi.</li>
+            <li>Dukungan pasca-peluncuran.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section fadeIn delay-2" id="services" aria-labelledby="services-title">
+      <h2 id="services-title">Layanan Kami</h2>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="feature card">
+          <h3>Desain Identitas</h3>
+          <p>Logo, guideline warna & tipografi, stationery, dan aset pemasaran.</p>
+        </div>
+        <div class="feature card">
+          <h3>Website & E-commerce</h3>
+          <p>Landing page, website company profile, hingga toko online yang mudah dikelola.</p>
+        </div>
+        <div class="feature card">
+          <h3>Brand Strategy</h3>
+          <p>Positioning, suara brand, serta plan komunikasi untuk target yang jelas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="section fadeIn delay-3" id="work" aria-labelledby="work-title">
+      <h2 id="work-title">Portfolio Pilihan</h2>
+      <p class="muted" style="margin-top:6px">Contoh project yang kami kerjakan — klik untuk melihat detail (placeholder).</p>
+
+      <div class="portfolio-grid" style="margin-top:12px">
+        <a class="project" href="#" style="background-image:url('https://picsum.photos/id/1015/800/600');" aria-label="Project A">
+          <div class="overlay">
+            <div class="tag">Web</div>
+            <h3 style="margin:8px 0 0 0">Project A</h3>
+            <p style="margin:6px 0 0 0;font-size:13px">Landing page untuk produk consumer.</p>
+          </div>
+        </a>
+
+        <a class="project" href="#" style="background-image:url('https://picsum.photos/id/1025/800/600');" aria-label="Project B">
+          <div class="overlay">
+            <div class="tag">Branding</div>
+            <h3 style="margin:8px 0 0 0">Project B</h3>
+            <p style="margin:6px 0 0 0;font-size:13px">Identitas visual & packaging.</p>
+          </div>
+        </a>
+
+        <a class="project" href="#" style="background-image:url('https://picsum.photos/id/1031/800/600');" aria-label="Project C">
+          <div class="overlay">
+            <div class="tag">E-commerce</div>
+            <h3 style="margin:8px 0 0 0">Project C</h3>
+            <p style="margin:6px 0 0 0;font-size:13px">Toko online untuk UMKM.</p>
+          </div>
+        </a>
+
+        <a class="project" href="#" style="background-image:url('https://picsum.photos/id/1043/800/600');" aria-label="Project D">
+          <div class="overlay">
+            <div class="tag">UI/UX</div>
+            <h3 style="margin:8px 0 0 0">Project D</h3>
+            <p style="margin:6px 0 0 0;font-size:13px">Redesign aplikasi internal.</p>
+          </div>
+        </a>
+
+        <a class="project" href="#" style="background-image:url('https://picsum.photos/id/1050/800/600');" aria-label="Project E">
+          <div class="overlay">
+            <div class="tag">Marketing</div>
+            <h3 style="margin:8px 0 0 0">Project E</h3>
+            <p style="margin:6px 0 0 0;font-size:13px">Kampanye digital & aset iklan.</p>
+          </div>
+        </a>
+
+        <a class="project" href="#" style="background-image:url('https://picsum.photos/id/1067/800/600');" aria-label="Project F">
+          <div class="overlay">
+            <div class="tag">Website</div>
+            <h3 style="margin:8px 0 0 0">Project F</h3>
+            <p style="margin:6px 0 0 0;font-size:13px">Site profile untuk brand lokal.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section fadeIn delay-3" id="testimonials" aria-labelledby="testi-title">
+      <h2 id="testi-title">Testimoni</h2>
+      <p class="muted" style="margin-top:6px">Suara klien yang puas dengan hasil kerja kami.</p>
+
+      <div style="margin-top:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <div id="testimonialsContainer" class="testimonials" aria-live="polite">
+          <!-- Carousel slides inserted by JS -->
+        </div>
+
+        <div class="controls">
+          <button id="prevTesti" class="btn btn-ghost" aria-label="Previous testimonial">◀</button>
+          <button id="nextTesti" class="btn btn-ghost" aria-label="Next testimonial">▶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG / NEWS -->
+    <section class="section fadeIn" id="blog" aria-labelledby="blog-title">
+      <h2 id="blog-title">Artikel Terbaru</h2>
+      <p class="muted" style="margin-top:6px">Update singkat seputar desain, web, dan strategi brand.</p>
+
+      <div style="margin-top:12px;display:grid;gap:12px">
+        <article class="post" aria-labelledby="post-1">
+          <img src="https://picsum.photos/id/1080/400/300" alt="Thumb artikel 1">
+          <div>
+            <h3 id="post-1" style="margin:0">5 Trik Mendesain Landing Page yang Konversi</h3>
+            <p class="muted" style="margin:6px 0 0 0">Pelajari elemen kunci untuk landing page yang efektif (CTA, hero, social proof).</p>
+          </div>
+        </article>
+
+        <article class="post" aria-labelledby="post-2">
+          <img src="https://picsum.photos/id/1074/400/300" alt="Thumb artikel 2">
+          <div>
+            <h3 id="post-2" style="margin:0">Cara Memilih Palet Warna Brand</h3>
+            <p class="muted" style="margin:6px 0 0 0">Langkah praktis memilih kombinasi warna yang sesuai dengan pesan brand.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT + MAP -->
+    <section class="section fadeIn" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Hubungi M.DNL</h2>
+      <p class="muted" style="margin-top:6px">Isi formulir atau gunakan tombol cepat untuk menghubungi via email/WhatsApp.</p>
+
+      <div class="contact-wrap" style="margin-top:12px">
+        <!-- Form -->
+        <form class="card" id="contactForm" onsubmit="return handleSubmit(event)" aria-label="Form kontak">
+          <label for="name">Nama</label>
+          <input id="name" name="name" type="text" placeholder="Nama Anda" required>
+
+          <label for="email" style="margin-top:8px">Email</label>
+          <input id="email" name="email" type="email" placeholder="email@domain.com" required>
+
+          <label for="service" style="margin-top:8px">Layanan</label>
+          <input id="service" name="service" type="text" placeholder="Contoh: Website / Branding" required>
+
+          <label for="message" style="margin-top:8px">Pesan</label>
+          <textarea id="message" name="message" placeholder="Tulis pesan singkat..." required></textarea>
+
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <button class="btn btn-primary" type="submit">Kirim Pesan</button>
+            <button class="btn btn-ghost" type="reset">Reset</button>
+            <!-- Quick contact buttons -->
+            <a id="mailtoBtn" class="btn btn-ghost" href="mailto:hello@mdnl.example" style="display:inline-flex;align-items:center">✉ Email</a>
+            <a id="waBtn" class="btn btn-ghost" href="#" style="display:inline-flex;align-items:center">💬 WhatsApp</a>
+          </div>
+
+          <p id="formStatus" class="small" style="margin-top:12px"></p>
+
+          <hr style="margin:16px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
+
+          <p class="small" style="margin:0">Atau hubungi langsung:</p>
+          <p style="margin:6px 0"><strong>Telepon:</strong> +62 812 3456 7890<br><strong>Email:</strong> hello@mdnl.example</p>
+        </form>
+
+        <!-- Map + Info -->
+        <div>
+          <div class="card" style="padding:10px">
+            <div style="height:220px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)">
+              <!-- Google Maps embed (Jakarta, Indonesia) -->
+              <iframe
+                src="https://www.google.com/maps?q=Jakarta,+Indonesia&output=embed"
+                width="100%" height="220" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Peta lokasi M.DNL"></iframe>
+            </div>
+
+            <div style="margin-top:12px">
+              <h4 style="margin:0 0 6px 0">Kantor</h4>
+              <p class="muted" style="margin:0">Jakarta, Indonesia<br>Senin–Jumat, 09:00–18:00</p>
+              <div style="margin-top:10px;display:flex;gap:8px">
+                <a class="btn btn-ghost" href="#" aria-label="Instagram">📸 Instagram</a>
+                <a class="btn btn-ghost" href="#" aria-label="LinkedIn">💼 LinkedIn</a>
+                <a class="btn btn-ghost" href="#" aria-label="Twitter / X">🐦 X</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div>© <strong>M.DNL</strong> — Semua hak dilindungi.</div>
+      <div class="muted" style="margin-top:8px">Tips: ganti email & nomor telepon di bagian kontak sebelum publish.</div>
+    </footer>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    /*****************************************
+     * Theme toggle (dark/light) with storage
+     *****************************************/
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const saved = localStorage.getItem('mdnl-theme');
+      if(saved === 'light'){ root.setAttribute('data-theme','light'); btn.setAttribute('aria-pressed','true') }
+      else { root.removeAttribute('data-theme'); btn.setAttribute('aria-pressed','false') }
+
+      btn.addEventListener('click', () => {
+        const isLight = root.getAttribute('data-theme') === 'light';
+        if(isLight){
+          root.removeAttribute('data-theme');
+          localStorage.removeItem('mdnl-theme');
+          btn.setAttribute('aria-pressed','false');
+        } else {
+          root.setAttribute('data-theme','light');
+          localStorage.setItem('mdnl-theme','light');
+          btn.setAttribute('aria-pressed','true');
+        }
+      });
+    })();
+
+    /*****************************************
+     * Testimonials carousel (simple)
+     *****************************************/
+    (function(){
+      const testimonials = [
+        { name: 'Andi S.', role:'Founder - Kopi Lokal', text: 'M.DNL mendesain ulang toko online kami dan hasilnya luar biasa. Penjualan meningkat 40%.' },
+        { name: 'Rina P.', role:'Marketing Lead', text: 'Proses cepat dan komunikasinya jelas. Sangat direkomendasikan.' },
+        { name: 'Budi H.', role:'Pemilik Toko', text: 'Website yang dibuat mudah digunakan dan tampilannya profesional.' }
+      ];
+
+      const container = document.getElementById('testimonialsContainer');
+      let idx = 0;
+
+      function renderTestimonial(i){
+        container.innerHTML = '';
+        const t = testimonials[i];
+        const card = document.createElement('div');
+        card.className = 'test-card card';
+        card.innerHTML = '<strong>'+escapeHtml(t.name)+'</strong> <span class="muted"> — '+escapeHtml(t.role)+'</span>' +
+          '<p class="test-quote">"' + escapeHtml(t.text) + '"</p>';
+        container.appendChild(card);
+      }
+
+      function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m] }) }
+
+      renderTestimonial(idx);
+
+      document.getElementById('prevTesti').addEventListener('click', ()=> {
+        idx = (idx - 1 + testimonials.length) % testimonials.length;
+        renderTestimonial(idx);
+      });
+      document.getElementById('nextTesti').addEventListener('click', ()=> {
+        idx = (idx + 1) % testimonials.length;
+        renderTestimonial(idx);
+      });
+
+      // auto-rotate
+      let rotate = setInterval(()=> { idx = (idx + 1) % testimonials.length; renderTestimonial(idx) }, 6000);
+      // pause rotation when user interacts
+      ['prevTesti','nextTesti','testimonialsContainer'].forEach(id=>{
+        const el = document.getElementById(id);
+        if(el) el.addEventListener('mouseover', ()=> clearInterval(rotate));
+      });
+    })();
+
+    /*****************************************
+     * Contact form handler
+     * - By default opens mail client via mailto
+     * - Optional: if you set FORMSPREE_ENDPOINT variable, it will POST to Formspree
+     *****************************************/
+    (function(){
+      // If you want to enable Formspree integration:
+      // 1) create a free form at https://formspree.io
+      // 2) replace null with your endpoint URL string (e.g. "https://formspree.io/f/xxxxx")
+      const FORMSPREE_ENDPOINT = null; // <-- set to string endpoint to enable AJAX submission
+
+      const form = document.getElementById('contactForm');
+      const status = document.getElementById('formStatus');
+      const waBtn = document.getElementById('waBtn');
+
+      // WhatsApp quick link - replace phone number with your own
+      const phone = '+6281234567890';
+      waBtn.href = `https://wa.me/${phone.replace(/\D/g,'')}`;
+
+      window.handleSubmit = function(e){
+        e.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const service = form.service.value.trim();
+        const message = form.message.value.trim();
+
+        if(!name || !email || !message){
+          status.textContent = 'Mohon lengkapi semua data.';
+          status.style.color = 'var(--danger)';
+          return false;
+        }
+
+        // If Formspree is configured, send via fetch
+        if(FORMSPREE_ENDPOINT){
+          status.textContent = 'Mengirim...';
+          fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST',
+            headers: {'Content-Type':'application/json', 'Accept':'application/json'},
+            body: JSON.stringify({name,email,service,message})
+          }).then(res => {
+            if(res.ok){ status.textContent = 'Pesan terkirim. Kami akan menghubungi Anda.'; status.style.color='var(--success)'; form.reset(); }
+            else { status.textContent = 'Gagal mengirim. Silakan coba email langsung.'; status.style.color='var(--danger)'; }
+          }).catch(err => { status.textContent = 'Terjadi error. Silakan kirim via email.'; status.style.color='var(--danger)'; });
+          return false;
+        }
+
+        // Fallback: open mail client with prefilled subject/body
+        const subject = encodeURIComponent('Permintaan dari website M.DNL — ' + name);
+        const body = encodeURIComponent('Nama: ' + name + '\\nEmail: ' + email + '\\nLayanan: ' + service + '\\n\\n' + message);
+        const mailto = 'mailto:hello@mdnl.example?subject=' + subject + '&body=' + body;
+        // open mail client
+        window.location.href = mailto;
+        status.textContent = 'Membuka aplikasi email... Jika tidak terbuka, silakan kirim ke hello@mdnl.example';
+        status.style.color = 'var(--muted)';
+        return false;
+      };
+    })();
+
+    /*****************************************
+     * Small helpers: smooth scroll offset for browsers
+     *****************************************/
+    (function(){
+      // If you have a fixed header height and want offset on in-page links,
+      // you can customize scroll behavior here. For simplicity we rely on CSS smooth scroll.
+    })();
+  </script>
+</body>
+</html>
